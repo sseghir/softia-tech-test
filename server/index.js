@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+var bodyParser = require('body-parser')
 const mysql = require('mysql');
 var cors = require('cors');
 
@@ -9,6 +10,10 @@ var corsOptions = {
 }
 
 app.use(cors(corsOptions));
+// create application/json parser
+var jsonParser = bodyParser.json()
+
+
 /*
     const selectEtudiant = () => {
         const student = db.query("SELECT * FROM etudiant");
@@ -21,21 +26,30 @@ app.use(cors(corsOptions));
 
 
 */
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '12Sabrina34!',
+    database: "formationplussoftia",
+});
+db.connect();
 
 app.get('/', function (req, res) {
 
-    const db = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '12Sabrina34!',
-        database: "formationplussoftia",
-    });
-    db.connect();
     db.query("SELECT * FROM etudiant", function (error, results, fields) {
         if (error) throw error;
         res.send(results);
     });
-    db.end();
+});
+
+app.get('/student/:id', async function(req, res) {
+ 
+    var id = req.params.id;
+
+    db.query("SELECT * FROM convention WHERE convention.idConvention = '" + escape(id) + "'", function (error, results) {
+        if (error) throw error;
+        res.send(results);
+    });
 });
 
 app.listen(3001, () => {

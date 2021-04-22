@@ -1,6 +1,6 @@
 import React from "react";
 import TextField from '@material-ui/core/TextField';
-import { makeStyles, Button, Divider } from '@material-ui/core';
+import { makeStyles, Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {

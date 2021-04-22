@@ -6,7 +6,7 @@ import { TextareaAutosize } from "@material-ui/core";
 
 function App() {
   return (
-    <div classNAme="App">
+    <div className="App">
       
       <Grid container spacing={2} direction="column">
       <Grid item container xs={12} justify="center">
@@ -17,9 +17,6 @@ function App() {
         </Grid>
         <Grid item container xs={12} justify="center">
           <TextareaAutosize aria-label="empty textarea" placeholder="Selectionnez un etudiant pour generer son attestation." />
-        </Grid>
-        <Grid item container xs={12} justify="center">
-          <AddStudent />
         </Grid>
       </Grid>
     </div>
