@@ -26,7 +26,7 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/student/:id', async function(req, res) {
+app.get('/convention/:id', async function(req, res) {
  
     var id = req.params.id;
 
@@ -36,11 +36,11 @@ app.get('/student/:id', async function(req, res) {
     });
 });
 
-app.get('/attestation/:id', async function(req, res) {
+app.get('/student/:id', async function(req, res) {
  
     var id = req.params.id;
 
-    db.query("SELECT * FROM attestation WHERE attestation.idEtudiant = '" + escape(id) + "'", function (error, results) {
+    db.query("SELECT * FROM etudiant WHERE etudiant.idEtudiant = '" + escape(id) + "'", function (error, results) {
         if (error) throw error;
         res.send(results);
     });
@@ -49,4 +49,3 @@ app.get('/attestation/:id', async function(req, res) {
 app.listen(3001, () => {
     console.log("running on port 3001");
 });
-
