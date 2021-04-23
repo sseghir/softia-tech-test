@@ -46,6 +46,18 @@ app.get('/student/:id', async function(req, res) {
     });
 });
 
+app.get('/attestation/:id/:idConvention/:message', async function(req, res) {
+ 
+    var id = req.params.id;
+    var idConvention = req.params.idConvention;
+    var message = req.params.message;
+    
+    db.query("INSERT INTO attestation (Etudiant, Convention, message) VALUES (" + escape(id) + "," + escape(idConvention) + "," + "\"" + escape(message) + "\"" + ")", function (error, results) {
+        if (error) throw error;
+        res.send(results);
+    });
+});
+
 app.listen(3001, () => {
     console.log("running on port 3001");
 });
